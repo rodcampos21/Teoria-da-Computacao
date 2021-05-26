@@ -234,3 +234,37 @@ def vazia(gramatica):
       print("A GLC é vazia")
    else:
       print("A GLC não é vazia")
+        
+        ## 42 Forma Normal de Greibach - Passo 2 - Rodrigo Meira Lima de Campos
+
+def fng_e2(gramatica):
+    variaveis = gramatica[0]
+    terminais = gramatica[1]
+    producoes = gramatica[2]
+    inicio = gramatica[3]
+   
+
+    for t in producoes: 
+        var1 = t[0] 
+        var2 = t[1] 
+        for s in var2: 
+            r = int(var1[1])
+            sub = ''
+            for j in s: 
+                sub = sub + j 
+                if str.isdigit(j): 
+                    s = int(j)
+                    if r > s: 
+                        for j2 in var2: 
+                                if str(s) in j2:
+                                    tupla_direita = t[1] 
+                                    for i in range(0,len(tupla_direita)): 
+                                        temp = tupla_direita[i] 
+                                       
+                                        
+                                    
+                                    
+                    else:
+                        break 
+
+    return gramatica = (variaveis, terminais, producoes, 'A1')
