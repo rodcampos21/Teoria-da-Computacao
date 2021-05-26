@@ -234,3 +234,32 @@ def vazia(gramatica):
       print("A GLC é vazia")
    else:
       print("A GLC não é vazia")
+        
+        ## 29 Transformação de GR para AF (Autômato com Pilha) - Rodrigo Meira Lima de Campos
+
+def gr2afn(gramatica):
+    variaveis = gramatica[0] 
+    terminais = gramatica[1] 
+    producoes = gramatica[2]
+    f_transicao = {}
+    i = 0
+
+    for v in variaveis: 
+        f_transicao[('q', ' ', v)] = set() 
+        for p in producoes: 
+            if(p[0] == v):
+               # print('Funcao de transicao para', v)
+                derivacoes = p[1]   
+                for d in derivacoes: 
+                    conjunto = f_transicao[('q', ' ', v)]
+                    conjunto.add(('q', d))
+                    f_transicao[('q', ' ', v)] = conjunto
+                    i += 1
+
+    for t in terminais:
+        f_transicao[('q', t, t)] = ('q', ' ') 
+        #conjunto = f_transicao[('q', t, t)]
+       # conjunto.add()
+                
+    pilha = ({'q'}, terminais, variaveis.union(terminais), f_transicao, gramatica[3])
+    return pilha
